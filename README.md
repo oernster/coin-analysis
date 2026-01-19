@@ -4,6 +4,8 @@
 
 A desktop application for recognizing years and mint marks on US cents using computer vision and machine learning techniques.
 
+<img width="1758" height="982" alt="{BCC4B92F-0458-4507-BBCD-B19E4C25BB4E}" src="https://github.com/user-attachments/assets/fbe8cf7a-c538-4709-b56d-f238ede69170" />
+
 ## Overview
 
 This application is designed to analyze images of US cents and identify the year and mint mark on the right side of the coin. It works with partial coin images and can process both individual images and batches of images.
