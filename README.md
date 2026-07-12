@@ -1,6 +1,10 @@
 # Coin Recognition Application
 
+[Friendly coffee donation here](https://www.paypal.com/ncp/payment/Z36XJEEA4MNV6) 
+
 A desktop application for recognizing years and mint marks on US cents using computer vision and machine learning techniques.
+
+<img width="1758" height="982" alt="{BCC4B92F-0458-4507-BBCD-B19E4C25BB4E}" src="https://github.com/user-attachments/assets/fbe8cf7a-c538-4709-b56d-f238ede69170" />
 
 ## Overview
 
