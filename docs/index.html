@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coin Recognition: Reading Year and Mint Mark off US Cents</title>
+<meta name="description" content="Coin Recognition is a local desktop application that reads the year and mint mark on US cents from photographs, combining a scikit-learn classifier with Tesseract OCR in a hybrid, confidence-scored prediction.">
+<meta name="keywords" content="coin recognition, numismatics, US cent, penny, mint mark, year detection, OCR, Tesseract, scikit-learn, computer vision, machine learning, PySide6, desktop application, hybrid prediction, local-first, Python">
+<meta name="author" content="Oliver Ernster">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#17140f">
+<link rel="canonical" href="https://oernster.github.io/coin-analysis/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Coin Recognition">
+<meta property="og:title" content="Coin Recognition: Reading Year and Mint Mark off US Cents">
+<meta property="og:description" content="A local desktop application that reads the year and mint mark on US cents by combining a machine-learning classifier with OCR in a hybrid, confidence-scored prediction.">
+<meta property="og:url" content="https://oernster.github.io/coin-analysis/">
+<meta property="og:image" content="https://oernster.github.io/coin-analysis/assets/coin-analysis.svg">
+<meta property="og:image:alt" content="A copper coin marked one cent">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Coin Recognition: Year and Mint Mark from US Cents">
+<meta name="twitter:description" content="Machine learning reads the worn coins; OCR reads the clear ones; a confidence-scored hybrid decides. Local, no cloud, no account.">
+<meta name="twitter:image" content="https://oernster.github.io/coin-analysis/assets/coin-analysis.svg">
+<link rel="icon" type="image/svg+xml" href="assets/coin-analysis.svg">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Coin Recognition", "applicationCategory": "MultimediaApplication", "operatingSystem": "Windows, macOS, Linux", "description": "A local desktop application that recognizes the year and mint mark on US cents from photographs, combining a scikit-learn classifier with Tesseract OCR in a hybrid, confidence-scored prediction. Processes single images or batches and exports results to CSV or JSON.", "url": "https://oernster.github.io/coin-analysis/", "image": "https://oernster.github.io/coin-analysis/assets/coin-analysis.svg", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"}, "author": {"@type": "Person", "name": "Oliver Ernster", "url": "https://www.crankthecode.com/"}, "audience": {"@type": "Audience", "audienceType": "Coin collectors, numismatists and computer-vision hobbyists"}, "keywords": "coin recognition, numismatics, US cent, mint mark, OCR, scikit-learn, computer vision, hybrid prediction", "license": "https://www.gnu.org/licenses/gpl-3.0.html"}</script>
+</head>
+<body>
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#top">
+      <img src="assets/coin-analysis.svg" alt="Coin Recognition icon">Coin Recognition</a>
+    <nav class="nav-links">
+      <a href="#who">Who it's for</a>
+      <a href="#what">What it does</a>
+      <a href="#how">How it works</a>
+      <a href="#start">Get started</a>
+      <a href="https://github.com/oernster/coin-analysis">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main id="top">
+  <section class="hero">
+    <div class="container">
+      <img class="logo" src="assets/coin-analysis.svg" alt="Coin Recognition icon">
+      <h1>Coin Recognition</h1>
+      <div class="tagline">Year and Mint Mark, from a Photograph</div>
+      <p class="lede">A local desktop application that reads the year and mint mark
+        off a US cent. Machine learning handles the worn coins, OCR handles the
+        clear ones, and a confidence-scored hybrid decides between them.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://github.com/oernster/coin-analysis">View on GitHub</a>
+        <a class="btn btn-ghost" href="#start">Get started</a>
+      </div>
+      <p class="release-note">It works on partial coin images. You do not need the whole penny.</p>
+      <div class="badges">
+        <span>Local-first</span>·<span>No cloud, no account</span>
+        ·<span>Single or batch</span>·<span>GPL-3.0</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="who" class="alt">
+    <div class="container">
+      <div class="eyebrow">Who it is for</div>
+      <h2 class="section-title">Built for people who look at a lot of cents</h2>
+      <p class="section-sub">This is a focused tool with a narrow job: identify the
+        year and mint mark on the right side of a US cent. It is honest about the
+        edges of that job.</p>
+      <div class="split">
+        <div class="panel is-for">
+          <h3>It is for you if</h3>
+          <ul>
+            <li>You are a <b>collector or numismatist</b> sorting or cataloguing cents from photographs.</li>
+            <li>You have a <b>folder of coin images</b> and want the year and mint mark read in a batch, then exported to CSV or JSON.</li>
+            <li>You are curious how a <b>hybrid ML-and-OCR</b> reader is put together and want to run it locally.</li>
+            <li>You want a tool that <b>runs on your machine</b>, keeps your images local and needs no account.</li>
+          </ul>
+        </div>
+        <div class="panel not-for">
+          <h3>It is not for you if</h3>
+          <ul>
+            <li>You need to grade a coin's <b>condition or value</b>. This reads the year and mint mark, nothing more.</li>
+            <li>You work with <b>coins other than US cents</b>. The historical validation and region logic are penny-specific.</li>
+            <li>You expect <b>flawless reads on badly worn coins</b>. Where the text is gone, the model guesses and tells you its confidence.</li>
+            <li>You want a <b>phone app or a hosted service</b>. This is a local desktop application.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="what">
+    <div class="container">
+      <div class="eyebrow">What it does</div>
+      <h2 class="section-title">Two readers, one confidence-scored answer</h2>
+      <p class="section-sub">A machine-learning classifier and an OCR engine read
+        every coin independently. Neither is trusted blindly. A hybrid layer
+        weighs both against their confidence and against what is historically
+        possible, then commits to a single year and mint mark.</p>
+      <div class="features">
+        <div class="feature"><div class="fnum">01</div><h3>Machine-learning reader</h3><p>A scikit-learn classifier over shape and texture features identifies the coin even when the text is worn or unclear, the case OCR struggles with most.</p></div>
+        <div class="feature"><div class="fnum">02</div><h3>OCR reader</h3><p>Tesseract reads the digits and mint-mark letters directly, restricted to a whitelist of valid characters. When the text is crisp, it is the stronger signal.</p></div>
+        <div class="feature"><div class="fnum">03</div><h3>Hybrid decision</h3><p>Confidence scores from both readers are compared and cross-checked against historical mint-and-year combinations, with a fallback to the ML reader when OCR is uncertain.</p></div>
+        <div class="feature"><div class="fnum">04</div><h3>Single or batch, exportable</h3><p>Process one image with tunable enhancement, or a whole folder at once. Results export to CSV or JSON. A PySide6 desktop interface throughout.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="alt">
+    <div class="container">
+      <div class="eyebrow">How it works</div>
+      <h2 class="section-title">From a photograph to a validated read</h2>
+      <p class="section-sub">Each coin passes through four stages. The image is
+        prepared, the year and mint-mark regions are located, both readers run,
+        and the hybrid layer commits to an answer it can justify.</p>
+      <div class="pipeline">
+        <div class="stage">
+          <span class="snum">1</span>
+          <h3>Preprocess</h3>
+          <p>The image is prepared for text: greyscale, adaptive contrast, edge-preserving denoise and thresholding to lift the digits off the field.</p>
+          <div class="tags"><span>greyscale</span><span>CLAHE</span><span>bilateral</span><span>threshold</span></div>
+        </div>
+        <div class="stage">
+          <span class="snum">2</span>
+          <h3>Locate regions</h3>
+          <p>Contour, Hough and template-matching passes find where the year and the mint mark sit on the coin, so each reader looks in the right place.</p>
+          <div class="tags"><span>contours</span><span>Hough</span><span>templates</span></div>
+        </div>
+        <div class="stage">
+          <span class="snum">3</span>
+          <h3>Read, twice</h3>
+          <p>The ML classifier and Tesseract OCR each read the located regions independently, and each returns its own confidence alongside its answer.</p>
+          <div class="tags"><span>scikit-learn</span><span>Tesseract</span><span>confidence</span></div>
+        </div>
+        <div class="stage">
+          <span class="snum">4</span>
+          <h3>Decide and validate</h3>
+          <p>The hybrid layer weighs both reads, checks the result against historically valid mint-and-year combinations, and falls back to ML when OCR is weak.</p>
+          <div class="tags"><span>hybrid</span><span>historical check</span><span>fallback</span></div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <h3>Why a hybrid, and not just OCR</h3>
+        <p>OCR is excellent on a clean, well-lit coin and unreliable on a worn one.
+          The ML classifier is the reverse: steadier on worn coins, weaker where a
+          single stray mark changes a digit. Reading with both and trusting the
+          more confident one, within what history allows, beats either reader
+          alone.</p>
+        <p>The <b>historical check</b> is the cheap, decisive guard. A mint mark
+          only appears on cents for specific spans of years, so an otherwise
+          plausible read that pairs an impossible mint and year is rejected before
+          it ever reaches you.</p>
+      </div>
+
+      <div class="tablewrap">
+        <table class="hist">
+          <thead>
+            <tr><th>Mint mark</th><th>Meaning</th><th>Valid on cents in</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>S</td><td>San Francisco</td><td>1909 to 1974</td></tr>
+            <tr><td>D</td><td>Denver</td><td>1911 onward</td></tr>
+            <tr><td>P</td><td>Philadelphia</td><td>1979, 1980 and 2017 onward</td></tr>
+            <tr><td>W</td><td>West Point</td><td>2019 only</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">The ranges above are the guard rails the hybrid layer uses to
+        reject impossible mint-and-year pairs. They are penny-specific, which is
+        one reason the tool is scoped to US cents.</p>
+    </div>
+  </section>
+
+  <section id="start">
+    <div class="container">
+      <div class="eyebrow">Get started</div>
+      <h2 class="section-title">Run it from a clone</h2>
+      <p class="section-sub">Coin Recognition is a Python desktop application built
+        on PySide6, OpenCV, scikit-learn and Tesseract OCR. Clone it, install the
+        dependencies and launch the interface. Everything runs locally.</p>
+      <div class="codeblock">
+<pre><span class="c"># Clone and enter the project</span>
+git clone https://github.com/oernster/coin-analysis.git
+cd coin-analysis
+
+<span class="c"># Install the dependencies</span>
+python -m pip install -r requirements.txt
+
+<span class="c"># Launch the desktop application</span>
+python run.py</pre>
+      </div>
+      <p class="note">Point it at a photo of the right side of a US cent, with the
+        year and mint mark visible. Partial images are fine. Use the Single Image
+        tab for one coin, or the Batch Processing tab for a folder, then export the
+        results to CSV or JSON. Tesseract OCR must be installed on your system for
+        the OCR reader to run.</p>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <strong>Coin Recognition</strong>: year and mint mark from US cent photographs<br>
+      (c) 2026 Oliver Ernster · Local-first · GPL-3.0
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/oernster/coin-analysis">GitHub</a>
+      <a href="https://oernster.github.io/">Project hub</a>
+      <a href="https://www.crankthecode.com/">crankthecode.com</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
