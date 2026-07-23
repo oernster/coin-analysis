@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why Coin Recognition exists: microscopes are not a workflow</title>
+<meta name="description" content="Why Coin Recognition was built: friends were identifying US cents under microscopes by hand. This local desktop tool reads the year and mint mark from photographs with a hybrid of machine learning and OCR, honestly scored.">
+<meta name="author" content="Oliver Ernster">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#17140f">
+<link rel="canonical" href="https://ernster.dev/coin-analysis/why.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Coin Recognition">
+<meta property="og:title" content="Why Coin Recognition exists: microscopes are not a workflow">
+<meta property="og:description" content="Friends were identifying US cents under microscopes by hand. This local desktop tool reads the year and mint mark from photographs with a hybrid of machine learning and OCR, honestly scored.">
+<meta property="og:url" content="https://ernster.dev/coin-analysis/why.html">
+<meta property="og:image" content="https://ernster.dev/coin-analysis/assets/coin-analysis.png">
+<meta property="og:image:alt" content="A copper coin marked one cent">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Why Coin Recognition exists">
+<meta name="twitter:description" content="Friends were identifying US cents under microscopes by hand. This local desktop tool reads the year and mint mark from photographs with a hybrid of machine learning and OCR.">
+<meta name="twitter:image" content="https://ernster.dev/coin-analysis/assets/coin-analysis.png">
+<link rel="icon" type="image/svg+xml" href="assets/coin-analysis.svg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/coin-analysis.svg" alt="Coin Recognition icon">Coin Recognition</a>
+    <nav class="nav-links">
+      <a href="index.html#who">Who it's for</a>
+      <a href="index.html#what">What it does</a>
+      <a href="index.html#how">How it works</a>
+      <a href="why.html">Why</a>
+      <a href="index.html#start">Get started</a>
+      <a href="https://github.com/oernster/coin-analysis">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <section id="exists">
+    <div class="container prose">
+      <div class="eyebrow">The reasoning</div>
+      <h2 class="section-title">Why this exists</h2>
+      <p>It started with friends in the United States identifying one-cent coins under
+        microscopes, coin by coin, by hand. Cataloguing cents means answering the same two
+        questions thousands of times (what year, which mint) and very little modern computer
+        vision tooling exists for collectible coins. That is a job for software: repetitive,
+        narrow and precise.</p>
+      <p>Coin Recognition answers those two questions from a photograph. The interesting part is
+        that no single reader can do it well. OCR is excellent on a crisp, well-lit coin and
+        unreliable on a worn one; a machine-learning classifier over shape and texture features
+        is the reverse, steadier where the text has faded. So the tool reads every coin twice,
+        compares the confidence of both answers and lets a hybrid layer commit to one, with a
+        cheap decisive guard on top: a mint mark only appears on cents in specific spans of
+        years, so an otherwise plausible read pairing an impossible mint and year is rejected
+        before it reaches you.</p>
+      <p>It is equally honest about its limits. Labelled training data for coins is scarce, so
+        accuracy on badly worn cents is bounded and the tool says so: every read arrives with
+        its confidence rather than a false certainty. The scope is deliberately narrow too. The
+        historical validation is penny-specific, so the tool does US cents properly instead of
+        all coins poorly.</p>
+      <p>What works now is a local PySide6 desktop application over OpenCV, scikit-learn and
+        Tesseract: single images with tunable enhancement or whole folders in batch, partial
+        coins accepted, results exported to CSV or JSON and nothing leaving your machine.</p>
+      <p>Full reasoning at <a href="https://www.crankthecode.com/posts/numismatism">crankthecode.com</a>.</p>
+      <div class="cta" style="justify-content:flex-start;margin-top:30px;">
+        <a class="btn btn-primary" href="https://github.com/oernster/coin-analysis">View on GitHub</a>
+        <a class="btn btn-ghost" href="index.html">Back to overview</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <strong>Coin Recognition</strong>: year and mint mark from US cent photographs<br>
+      (c) Oliver Ernster · Local-first · GPL-3.0
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/oernster/coin-analysis">GitHub</a>
+      <a href="https://ernster.dev/">Project hub</a>
+      <a href="https://www.crankthecode.com/">crankthecode.com</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

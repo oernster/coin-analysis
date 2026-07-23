@@ -34,6 +34,7 @@
       <a href="#who">Who it's for</a>
       <a href="#what">What it does</a>
       <a href="#how">How it works</a>
+      <a href="why.html">Why</a>
       <a href="#start">Get started</a>
       <a href="https://github.com/oernster/coin-analysis">GitHub</a>
     </nav>
@@ -47,7 +48,7 @@
       <div class="tagline">Year and Mint Mark, from a Photograph</div>
       <p class="lede">A local desktop application that reads the year and mint mark
         off a US cent. Machine learning handles the worn coins, OCR handles the
-        clear ones, and a confidence-scored hybrid decides between them.</p>
+        clear ones and a confidence-scored hybrid decides between them.</p>
       <div class="cta">
         <a class="btn btn-primary" href="https://github.com/oernster/coin-analysis">View on GitHub</a>
         <a class="btn btn-ghost" href="#start">Get started</a>
@@ -102,7 +103,7 @@
         <div class="feature"><div class="fnum">01</div><h3>Machine-learning reader</h3><p>A scikit-learn classifier over shape and texture features identifies the coin even when the text is worn or unclear, the case OCR struggles with most.</p></div>
         <div class="feature"><div class="fnum">02</div><h3>OCR reader</h3><p>Tesseract reads the digits and mint-mark letters directly, restricted to a whitelist of valid characters. When the text is crisp, it is the stronger signal.</p></div>
         <div class="feature"><div class="fnum">03</div><h3>Hybrid decision</h3><p>Confidence scores from both readers are compared and cross-checked against historical mint-and-year combinations, with a fallback to the ML reader when OCR is uncertain.</p></div>
-        <div class="feature"><div class="fnum">04</div><h3>Single or batch, exportable</h3><p>Process one image with tunable enhancement, or a whole folder at once. Results export to CSV or JSON. A PySide6 desktop interface throughout.</p></div>
+        <div class="feature"><div class="fnum">04</div><h3>Single or batch, exportable</h3><p>Process one image with tunable enhancement or a whole folder at once. Results export to CSV or JSON. A PySide6 desktop interface throughout.</p></div>
       </div>
     </div>
   </section>
@@ -130,19 +131,19 @@
         <div class="stage">
           <span class="snum">3</span>
           <h3>Read, twice</h3>
-          <p>The ML classifier and Tesseract OCR each read the located regions independently, and each returns its own confidence alongside its answer.</p>
+          <p>The ML classifier and Tesseract OCR each read the located regions independently; each returns its own confidence alongside its answer.</p>
           <div class="tags"><span>scikit-learn</span><span>Tesseract</span><span>confidence</span></div>
         </div>
         <div class="stage">
           <span class="snum">4</span>
           <h3>Decide and validate</h3>
-          <p>The hybrid layer weighs both reads, checks the result against historically valid mint-and-year combinations, and falls back to ML when OCR is weak.</p>
+          <p>The hybrid layer weighs both reads, checks the result against historically valid mint-and-year combinations and falls back to ML when OCR is weak.</p>
           <div class="tags"><span>hybrid</span><span>historical check</span><span>fallback</span></div>
         </div>
       </div>
 
       <div class="callout">
-        <h3>Why a hybrid, and not just OCR</h3>
+        <h3>Why a hybrid rather than just OCR</h3>
         <p>OCR is excellent on a clean, well-lit coin and unreliable on a worn one.
           The ML classifier is the reverse: steadier on worn coins, weaker where a
           single stray mark changes a digit. Reading with both and trusting the
@@ -193,7 +194,7 @@ python run.py</pre>
       </div>
       <p class="note">Point it at a photo of the right side of a US cent, with the
         year and mint mark visible. Partial images are fine. Use the Single Image
-        tab for one coin, or the Batch Processing tab for a folder, then export the
+        tab for one coin or the Batch Processing tab for a folder, then export the
         results to CSV or JSON. Tesseract OCR must be installed on your system for
         the OCR reader to run.</p>
     </div>
@@ -203,7 +204,7 @@ python run.py</pre>
   <div class="container footer-inner">
     <div>
       <strong>Coin Recognition</strong>: year and mint mark from US cent photographs<br>
-      (c) 2026 Oliver Ernster · Local-first · GPL-3.0
+      (c) Oliver Ernster · Local-first · GPL-3.0
     </div>
     <div class="footer-links">
       <a href="https://github.com/oernster/coin-analysis">GitHub</a>
