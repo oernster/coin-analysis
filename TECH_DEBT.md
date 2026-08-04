@@ -2,9 +2,11 @@
 
 A standing reference to the project's outstanding technical debt. It records what is still open, weighs whether each item is worth doing and gives the rationale. Every item is a behaviour-preserving internal concern: nothing here proposes reverting a feature or changing any UI or UX behaviour. Scope is the whole repository: the `app` package, the training and packaging scripts at root, the bundled image data under `data/` and the GitHub Pages site under `docs/`.
 
-Read the last section first. This project has a settled decision about its own future direction, and several items that would otherwise look like obvious next steps are ruled out by it.
+**This project is parked.** The shipped capability, a hybrid of `pytesseract` OCR and a scikit-learn classifier with confidence scoring, works and is finished. No further development is planned, and the deeper machine-learning direction is closed permanently for the reason given in the last section.
 
-The shipped capability, a hybrid of `pytesseract` OCR and a scikit-learn classifier with confidence scoring, works and is finished. This file is about the repository around it.
+Nothing below is scheduled work. The file exists so that if the project is ever picked up again, the state of the repository is already understood, and so that the closed direction is not rediscovered as an obvious next step. Read the last section first.
+
+Two items are worth doing even while parked, because they cost every clone and every reader rather than costing a developer: the duplicated dataset (item 1) and the tracked model binaries (item 2). The rest can wait indefinitely.
 
 ---
 
