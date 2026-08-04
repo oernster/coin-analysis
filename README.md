@@ -102,13 +102,12 @@ The application comes with a basic model, but you can train your own model using
 3. Use the "Train Model" option in the Tools menu
 4. Follow the training wizard to create and train your model
 
-## Future Improvements
+## Documentation
 
-- Transfer learning with deep neural networks for improved accuracy
-- OCR integration for direct text recognition
-- Support for other coin types
-- Mobile application version
+- [TECH_DEBT.md](TECH_DEBT.md): what is still open, what is deliberately left and what only
+  looks like debt, including the settled decision on this project's direction.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE)
+file for details.
